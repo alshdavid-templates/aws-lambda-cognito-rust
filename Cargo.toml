@@ -2,7 +2,9 @@
 resolver = "2"
 
 members = [
-  "./packages/server",
+  "./packages/httpd",
+  "./packages/lambda",
+  "./packages/platform",
 ]
 
 [profile.release]
