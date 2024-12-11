@@ -39,5 +39,8 @@ jobs:
           aws --profile default configure set aws_access_key_id "${{ secrets.AWS_ACCESS_KEY_ID }}"
           aws --profile default configure set aws_secret_access_key "${{ secrets.AWS_ACCESS_KEY_ID }}"
           aws configure set region "ap-southeast-2"
+
+          aws s3 ls
+
           just deploy
         
