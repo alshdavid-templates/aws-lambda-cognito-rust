@@ -41,7 +41,7 @@ const config = {
     styles: Paths.Styles,
   },
   output: {
-    filename: '[name].js',
+    filename: '[name].[contenthash].js',
     path: Paths.Output,
   },
   experiments: {
@@ -86,7 +86,9 @@ const config = {
     ]
   },
   plugins: [
-    new rspack.CssExtractRspackPlugin({}),
+    new rspack.CssExtractRspackPlugin({
+      filename: '[name].[chunkhash].css'
+    }),
     new HtmlWebpackPlugin({
       minify: false,
       filename: 'index.html',
@@ -116,7 +118,9 @@ const config = {
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-    alias: {}
+    extensionAlias: {
+      ".js": [".js", ".ts", ".tsx"],
+    }
   },
   devServer: {
     hot: false,

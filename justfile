@@ -23,7 +23,7 @@ build-lambda:
 build-publish:
   rm -rf {{ justfile_directory() }}/dist
   mkdir -p {{ justfile_directory() }}/dist
-  cd packages/client && npx rspack build --mode production
+  cd packages/client && rm -rf dist && npx rspack build --mode production
   cp -r {{ justfile_directory() }}/packages/client/dist {{ justfile_directory() }}/dist/client
 
   env \
