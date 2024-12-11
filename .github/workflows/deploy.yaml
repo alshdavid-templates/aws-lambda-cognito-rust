@@ -19,7 +19,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: ap-southeast-2
       GLOBAL_PREFIX: alshdavid
-      PROJECT_NAME: aws_lambda_rust
+      PROJECT_NAME: aws-lambda-cognito-rust
     steps:
       - uses: actions/checkout@v4
       - name: "Setup"
