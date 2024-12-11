@@ -8,5 +8,5 @@ variable "global_bucket" {
 
 variable "project_name" {
   type = string
-  default = "aws_lambda_rust"
+  default = "alshdavid-templates-rust-lambda-cognito-rust"
 }
