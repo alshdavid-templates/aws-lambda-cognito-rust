@@ -29,7 +29,7 @@ resource "aws_cloudwatch_log_group" "main_logs" {
 data "archive_file" "lambda_artifact" {
   type = "zip"
   source_dir = "${path.module}/../dist/lambda"
-  output_path = "${path.module}/../lambda/.lambda.zip"
+  output_path = "${path.module}/../dist/lambda/.lambda.zip"
 }
 
 resource "aws_s3_object" "lambda_artifact" {
