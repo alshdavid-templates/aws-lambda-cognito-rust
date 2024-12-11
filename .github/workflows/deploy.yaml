@@ -22,12 +22,12 @@ jobs:
       PROJECT_NAME: aws-lambda-cognito-rust
     steps:
       - uses: actions/checkout@v4
-      - run: bash .github/scripts/prelude/ubuntu.bash
-      - run: bash .github/scripts/prelude/aws.bash
-      - run: bash .github/scripts/prelude/just.bash
-      - run: bash .github/scripts/prelude/nodejs.bash
-      - run: bash .github/scripts/prelude/rust.bash
-      - run: bash .github/scripts/prelude/terraform.bash
+      - run: bash .github/scripts/ubuntu.bash
+      - run: bash .github/scripts/aws.bash
+      - run: bash .github/scripts/just.bash
+      - run: bash .github/scripts/nodejs.bash
+      - run: bash .github/scripts/rust.bash
+      - run: bash .github/scripts/terraform.bash
 
       - run: |
           set -e
