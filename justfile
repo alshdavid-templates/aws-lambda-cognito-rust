@@ -7,7 +7,9 @@ build:
   cargo build --release
 
 build-client:
-  cd packages/client && npx rspack build
+  mkdir -p {{ justfile_directory() }}/dist
+  cd packages/client && npx rspack build  
+  cp -r {{ justfile_directory() }}/packages/client/dist {{ justfile_directory() }}/dist/client
 
 fmt:
   cargo +nightly fmt

@@ -13,12 +13,7 @@ jobs:
   deploy:
     name: "🐥 Build"
     runs-on: ubuntu-latest
-    env:
-      TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: ap-southeast-2
-      GLOBAL_PREFIX: alshdavid
+    
       PROJECT_NAME: aws-lambda-cognito-rust
     steps:
       - uses: actions/checkout@v4
@@ -28,7 +23,6 @@ jobs:
       - run: bash .github/scripts/nodejs.bash
       - run: bash .github/scripts/rust.bash
       - run: bash .github/scripts/terraform.bash
-
       - run: |
           set -e
           npm install
@@ -36,5 +30,10 @@ jobs:
           ls -l dist
           ls -l dist/client
           ls -l dist/lambda
-
       - run: just deploy
+        env:
+          TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ap-southeast-2
+          GLOBAL_PREFIX: alshdavid
