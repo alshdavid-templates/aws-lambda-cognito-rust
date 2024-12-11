@@ -16,7 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: bash .github/scripts/ubuntu.bash
-      - run: bash .github/scripts/aws.bash
       - run: bash .github/scripts/just.bash
       - run: bash .github/scripts/nodejs.bash
       - run: bash .github/scripts/rust.bash
