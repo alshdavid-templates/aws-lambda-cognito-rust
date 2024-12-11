@@ -29,8 +29,7 @@ jobs:
       - run: bash .github/scripts/prelude/rust.bash
       - run: bash .github/scripts/prelude/terraform.bash
 
-      - name: "Build"
-        run: |
+      - run: |
           set -e
           npm install
           just build-publish
@@ -38,5 +37,4 @@ jobs:
           ls -l dist/client
           ls -l dist/lambda
 
-      - name: "Deploy"
-        run: bash .github/scripts/deploy.bash
+      - run: just deploy

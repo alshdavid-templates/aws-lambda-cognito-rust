@@ -32,3 +32,6 @@ build-publish:
 
   mkdir -p {{ justfile_directory() }}/dist/lambda
   mv {{ justfile_directory() }}/target/aarch64-unknown-linux-musl/release/lambda {{ justfile_directory() }}/dist/lambda/bootstrap
+
+deploy:
+  cd terraform && terraform init && terraform validate && terraform apply -auto-approve

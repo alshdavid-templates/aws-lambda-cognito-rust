@@ -8,6 +8,4 @@ cd $ROOT_DIR/.terraform
 terraform init
 
 terraform apply \
-  -var global_bucket="${GLOBAL_BUCKET}" \
-  -var global_prefix="${GLOBAL_PREFIX}" \
   -auto-approve
