@@ -24,7 +24,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: "Setup"
         run: bash .github/scripts/prelude.bash
+        
       - name: "Build"
-        run: bash .github/scripts/build.bash
+        run: |
+          set -e
+          npm install
+          just build-publish
+
       - name: "Deploy"
         run: bash .github/scripts/deploy.bash

@@ -18,3 +18,17 @@ build-lambda:
   cd target/x86_64-unknown-linux-musl/release && \
   rm -rf bootstrap && \
   mv lambda {{ justfile_directory() }}/dist/bootstrap
+
+
+build-publish:
+  rm -rf {{ justfile_directory() }}/dist
+  mkdir -p {{ justfile_directory() }}/dist
+  cd packages/client && npx rspack build --mode production
+  cp -r {{ justfile_directory() }}/packages/client/dist {{ justfile_directory() }}/dist/client
+
+  env \
+    CC=aarch64-linux-gnu-gcc \
+    cargo build --package lambda --release --target aarch64-unknown-linux-musl
+
+  mkdir -p {{ justfile_directory() }}/dist/lambda
+  mv {{ justfile_directory() }}/target/aarch64-unknown-linux-musl/release/lambda {{ justfile_directory() }}/dist/lambda/bootstrap

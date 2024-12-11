@@ -134,11 +134,6 @@ const config = {
   }
 }
 
-if (mode === modes.production) {
-  config.output.filename = '[name].[chunkhash].js'
-  config.module.rules[1].use.unshift(MiniCssExtractPlugin.loader)
-}
-
 if (process.argv.includes(Args.Stats)) {
   config.plugins.push(new BundleAnalyzerPlugin())
 }
