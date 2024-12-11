@@ -23,19 +23,18 @@ resource "aws_iam_role_policy_attachment" "main_lambda_policy" {
 }
 
 resource "aws_cloudwatch_log_group" "main_logs" {
-  #name = "/aws/lambda/${aws_lambda_function.main.function_name}"
   retention_in_days = 14
 }
 
 data "archive_file" "lambda_artifact" {
   type = "zip"
   source_dir = "${path.module}/../dist/lambda"
-  output_path = "${path.module}/../lambda/lambda.zip"
+  output_path = "${path.module}/../lambda/.lambda.zip"
 }
 
 resource "aws_s3_object" "lambda_artifact" {
-  bucket = data.aws_s3_bucket.bucket.id
-  key = "lambda.zip"
+  bucket = aws_s3_bucket.bucket.id
+  key = ".lambda.zip"
   source = data.archive_file.lambda_artifact.output_path
   etag = filemd5(data.archive_file.lambda_artifact.output_path)
 }
@@ -54,7 +53,7 @@ resource "aws_lambda_function" "main_lambda" {
   
   memory_size = 128
 
-  s3_bucket = data.aws_s3_bucket.bucket.id
+  s3_bucket = aws_s3_bucket.bucket.id
   s3_key = aws_s3_object.lambda_artifact.key
 
   environment {

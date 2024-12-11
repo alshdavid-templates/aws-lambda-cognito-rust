@@ -46,7 +46,7 @@ resource "aws_s3_bucket_policy" "bucket-policy" {
 
 locals {
   mime_types = jsondecode(file("${path.module}/mime-types.json"))
-  upload_directory = "${path.module}/../dist"
+  upload_directory = "${path.module}/../dist/client"
 }
 
 resource "aws_s3_object" "upload_object" {
@@ -55,7 +55,11 @@ resource "aws_s3_object" "upload_object" {
   key = replace(each.value, "${local.upload_directory}/", "")
   source = "${local.upload_directory}/${each.value}"
   etag = filemd5("${local.upload_directory}/${each.value}")
-  content_type = lookup(local.mime_types, split(".", each.value)[length(split(".", each.value)) - 1])
+  content_type = lookup(
+    local.mime_types, 
+    split(".", each.value)[length(split(".", each.value)) - 1],
+    "",
+  )
 }
 
 output "bucket_url" {
