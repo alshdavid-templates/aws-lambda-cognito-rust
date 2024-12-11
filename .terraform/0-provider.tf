@@ -1,4 +1,11 @@
 terraform {
+  cloud { 
+    organization = "alshdavid" 
+    workspaces { 
+      name = "aws-lambda-cognito-rust" 
+    } 
+  } 
+
   required_providers {
     aws = {
       source = "hashicorp/aws"

@@ -10,8 +10,8 @@ export CC=aarch64-linux-gnu-gcc
 
 # TARGET=x86_64-unknown-linux-musl
 
-cargo build --target $TARGET --release
+cargo build --package lambda --target $TARGET --release
 
 rm -rf dist
 mkdir dist
-mv $ROOT_DIR/target/$TARGET/release/aws-lambda-rust $ROOT_DIR/dist/bootstrap
+mv $ROOT_DIR/target/$TARGET/release/lambda $ROOT_DIR/dist/bootstrap
